@@ -2,6 +2,9 @@ package com.louhibi.SpringAPI.api.controller;
 
 import com.louhibi.SpringAPI.api.model.User;
 import com.louhibi.SpringAPI.service.UserService;
+import org.apache.catalina.filters.ExpiresFilter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,5 +37,12 @@ public class UserController {
     public User postUser(@RequestBody User user){
         userService.cearteUser(user);
         return user;
+    }
+
+    @DeleteMapping("/User")
+    public ResponseEntity deleteUser(@RequestParam Integer id){
+        if(userService.deleteUser(id))
+            return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.NOT_FOUND);
     }
 }

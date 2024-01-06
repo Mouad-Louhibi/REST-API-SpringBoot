@@ -34,4 +34,16 @@ public class UserService {
     public void cearteUser(User user){
         userList.add(user);
     }
+
+    public boolean deleteUser(Integer id){
+        int i = 0;
+        for (User user: userList) {
+            if (user.getId() == id) {
+                userList.remove(i);
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
 }
