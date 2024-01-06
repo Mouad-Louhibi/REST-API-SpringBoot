@@ -2,10 +2,9 @@ package com.louhibi.SpringAPI.api.controller;
 
 import com.louhibi.SpringAPI.api.model.User;
 import com.louhibi.SpringAPI.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,5 +23,16 @@ public class UserController {
             return (User) user.get();
         }
         return null;
+    }
+
+    @GetMapping("/")
+    public List<User> getAll(){
+        return userService.getAllUsers();
+    }
+
+    @PostMapping("/User")
+    public User postUser(@RequestBody User user){
+        userService.cearteUser(user);
+        return user;
     }
 }
